@@ -1,0 +1,3 @@
+- dolžina poti največ n^2 (geometrijsko: znotraj vsake ravnine največ n, n ranvin) - v praksi se zdi kot da je v resnici manj kot 3n
+
+-če imamo nabor možnih stanj, lahko to uporabimo kot stanje pri dp (vemo, kako dolgo pot lahko od tam naprej naredimo) - morda problem, ker se ne prekriva dovolj
