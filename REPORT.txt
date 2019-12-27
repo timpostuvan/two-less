@@ -1,3 +1,21 @@
 - dolžina poti največ n^2 (geometrijsko: znotraj vsake ravnine največ n, n ranvin) - v praksi se zdi kot da je v resnici manj kot 3n
 
 -če imamo nabor možnih stanj, lahko to uporabimo kot stanje pri dp (vemo, kako dolgo pot lahko od tam naprej naredimo) - morda problem, ker se ne prekriva dovolj
+
+- tranizitivno velja, če so vsi trije vhodi manjši - če imamo pot in smo dodali (d, e, f), lahko pa bi dodali tudi (a, b, c) in (a < d, b < e, c < f), potem je boljše, da dodamo (a, b, c). 
+Dokaz: če prej veljajo two less relacije, potem tudi kasneje (Problem je lahko samo na desno. Na levo je ok, ker smo predpostavili, da je v redu izbira).
+
+- ni treba poskusiti vseh možnih veljavnih stanj, ampak samo tista, ki so najmanjša (ne obstaja stanje, ki bi imelo vse tri vhode manjše) - zaradi tranzitivnosti
+
+- začetno stanje je vedno (0, 0, 0) zaradi tranzitivnosti
+
+- 2 komponenti je vedno treba povečati za vsaj 1, sicer ni manjše od prejšnje vrednosti. Vseh 3 se pa ne splača zaradi tranzitivnosti.
+
+
+
+
+
+
+
+POTENCIALNO DOBRE REŠITVE - POTREBEN DOKAZ PRAVILNOSTI:
+- dve povečamo za 1, tretjo damo na minimalno možno
