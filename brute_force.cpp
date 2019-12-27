@@ -90,6 +90,10 @@ int main(){
 	f(possible);
 
 	for(int i = 0; i < solutions.size(); i++){
+		if(solutions.back().size() > solutions[i].size()){
+			continue;
+		}
+
 		for(int j = 0; j < solutions[i].size(); j++){
 			cout << "(" << solutions[i][j][0] << ", " << solutions[i][j][1] << ", " << solutions[i][j][2] << ") "; 
 		}
