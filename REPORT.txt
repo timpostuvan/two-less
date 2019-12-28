@@ -1,17 +1,17 @@
-- dolžina poti največ n^2 (geometrijsko: znotraj vsake ravnine največ n, n ranvin) - v praksi se zdi kot da je v resnici manj kot 3n
+- Dolžina poti največ n^2 (geometrijsko: znotraj vsake ravnine največ n, n ranvin) - v praksi se zdi kot da je v resnici manj kot 3n.
 
--če imamo nabor možnih stanj, lahko to uporabimo kot stanje pri dp (vemo, kako dolgo pot lahko od tam naprej naredimo) - morda problem, ker se ne prekriva dovolj
+- Če imamo nabor možnih stanj, lahko to uporabimo kot stanje pri dp (vemo, kako dolgo pot lahko od tam naprej naredimo) - morda problem, ker se ne prekriva dovolj (izkaže se, da je precej uporabno).
 
-- tranizitivno velja, če so vsi trije vhodi manjši - če imamo pot in smo dodali (d, e, f), lahko pa bi dodali tudi (a, b, c) in (a < d, b < e, c < f), potem je boljše, da dodamo (a, b, c). 
+- Tranizitivno velja, če so vsi trije vhodi manjši - če imamo pot in smo dodali (d, e, f), lahko pa bi dodali tudi (a, b, c) in (a <= d, b <= e, c <= f), potem je boljše, da dodamo (a, b, c). 
 Dokaz: če prej veljajo two less relacije, potem tudi kasneje (Problem je lahko samo na desno. Na levo je ok, ker smo predpostavili, da je v redu izbira).
 
-- ni treba poskusiti vseh možnih veljavnih stanj, ampak samo tista, ki so najmanjša (ne obstaja stanje, ki bi imelo vse tri vhode manjše) - zaradi tranzitivnosti
+- Ni treba poskusiti vseh možnih veljavnih stanj, ampak samo tista, ki so najmanjša (ne obstaja stanje, ki bi imelo vse tri vhode manjše) - zaradi tranzitivnosti.
 
-- začetno stanje je vedno (0, 0, 0) zaradi tranzitivnosti
+- Začetno stanje je vedno (0, 0, 0) zaradi tranzitivnosti.
 
 - 2 komponenti je vedno treba povečati za vsaj 1, sicer ni manjše od prejšnje vrednosti. Vseh 3 se pa ne splača zaradi tranzitivnosti.
 
-
+- Dve poti sta enaki, če obstaja permutacija, ki eno pot pretvori v drugo (uporabimo permutacijo na vsakem elementu). Tako lahko pri enem stanju v resnici poračunamo 6 stanj. Izkaže se, da to deluje samo slabše (dp_trans_perm): za n = 6 in n = 7 je cca 4krat počasneje
 
 
 

@@ -51,6 +51,22 @@ vector<vector<int>> intersection(vector<vector<int>> &a, vector<vector<int>> &b)
     return ret;
 }
 
+
+void memoizate_dp(vector<vector<int>> &possible, int max_len, vector<vector<int>> &max_path){
+	for(int i = 0; i < 6; i++){
+		dp[possible] = max_len;
+		path[possible] = max_path;
+
+		for(int j = 0; j < possible.size(); j++){
+			next_permutation(possible[j].begin(), possible[j].end());
+		}
+
+		for(int j = 0; j < max_path.size(); j++){
+			next_permutation(max_path[j].begin(), max_path[j].end());
+		}
+	}
+}
+
 int f(vector<vector<int>> &possible){
 	if(possible.size() == 0){
 		return 0;
@@ -86,15 +102,13 @@ int f(vector<vector<int>> &possible){
 		}
 	}
 
-	dp[possible] = max_len;
-	path[possible] = max_path;
-
+	memoizate_dp(possible, max_len, max_path);
 	return max_len;
 }
 
 
 int main(){
-	int n = 6;
+	int n = 7;
 
 	for(int i = 0; i < n; i++){
 		for(int j = 0; j < n; j++){
