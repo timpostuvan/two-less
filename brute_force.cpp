@@ -1,4 +1,5 @@
 #include <iostream>
+#include <fstream>
 #include <vector>
 #include <algorithm>
 
@@ -59,8 +60,9 @@ void f(vector<vector<int>> &possible){
 }
 
 
-int main(){
-	int n = 5;
+int main(int argc, char* argv[]){
+	int n = stoi(argv[1]);
+	char* output_file = argv[2];
 
 	for(int i = 0; i < n; i++){
 		for(int j = 0; j < n; j++){
@@ -89,15 +91,18 @@ int main(){
 
 	f(possible);
 
+	ofstream out(output_file);
 	for(int i = 0; i < solutions.size(); i++){
 		if(solutions.back().size() > solutions[i].size()){
 			continue;
 		}
 
 		for(int j = 0; j < solutions[i].size(); j++){
-			cout << "(" << solutions[i][j][0] << ", " << solutions[i][j][1] << ", " << solutions[i][j][2] << ") "; 
+			out << "(" << solutions[i][j][0] << ", " << solutions[i][j][1] << ", " << solutions[i][j][2] << ") "; 
 		}
-		cout << endl;
+		out << endl;
 	}
+
+	out.close();
 	return 0;
 }

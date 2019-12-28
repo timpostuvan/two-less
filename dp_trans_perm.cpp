@@ -1,4 +1,5 @@
 #include <iostream>
+#include <fstream>
 #include <vector>
 #include <algorithm>
 #include <map>
@@ -107,8 +108,9 @@ int f(vector<vector<int>> &possible){
 }
 
 
-int main(){
-	int n = 7;
+int main(int argc, char* argv[]){
+	int n = stoi(argv[1]);
+	char* output_file = argv[2];
 
 	for(int i = 0; i < n; i++){
 		for(int j = 0; j < n; j++){
@@ -131,16 +133,17 @@ int main(){
 		}
 	}
 
+	ofstream out(output_file);
 
 	vector<vector<int>> possible = larger[0][0][0];
-	cout << "Max length: " << f(possible) + 1 << endl;
-
+	out << "Max length: " << f(possible) + 1 << endl;
 
 	vector<vector<int>> solution = path[larger[0][0][0]];
 	solution.insert(solution.begin(), {0, 0, 0});
 	for(int i = 0; i < solution.size(); i++){
-		cout << "(" << solution[i][0] << ", " << solution[i][1] << ", " << solution[i][2] << ") "; 
+		out << "(" << solution[i][0] << ", " << solution[i][1] << ", " << solution[i][2] << ") "; 
 	} 
-	
+
+	out.close();
 	return 0;
 }
