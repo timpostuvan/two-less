@@ -1,8 +1,12 @@
 - Dolžina poti največ n^2 (geometrijsko: znotraj vsake ravnine največ n, n ranvin) - v praksi se zdi kot da je v resnici manj kot 3n.
 
-- Če imamo nabor možnih stanj, lahko to uporabimo kot stanje pri dp (vemo, kako dolgo pot lahko od tam naprej naredimo) - morda problem, ker se ne prekriva dovolj (izkaže se, da je precej uporabno).
+- Dolžina poti največ n * (n + 1) / 2 (če vrednosti vpisujemo v n * n polje, kjer vrednost v vsakem polju predstavlja z koordinato, se v vsaki vrstici vrednosti zamaknejo za 1. Prva vrst: 1, 2, ..., n; Druga vrsta: 2, 3, ..., n; ...)
 
-- Tranizitivno velja, če so vsi trije vhodi manjši - če imamo pot in smo dodali (d, e, f), lahko pa bi dodali tudi (a, b, c) in (a <= d, b <= e, c <= f), potem je boljše, da dodamo (a, b, c). 
+- Če imamo nabor možnih stanj, lahko to uporabimo kot karakteristiko pri dp (vemo, kako dolgo pot lahko od tam naprej naredimo) - morda problem, ker se ne prekriva dovolj (izkaže se, da je precej uporabno).
+
+- Z uporabo tranzitivnosti lahko karakteristiko opišemo zgolj z množico minimalnih stanj (za katere ne obstaja stanje, ki je po 3-less relaciji manjše). Tako se prostorska zahtevnost zmanjša za 7krat (empirično na n = 4 .. 6).
+ 
+- Tranizitivno velja, če so vsi trije vhodi manjši (3-less relacija)- če imamo pot in smo dodali (d, e, f), lahko pa bi dodali tudi (a, b, c) in (a <= d, b <= e, c <= f), potem je boljše, da dodamo (a, b, c). 
 Dokaz: če prej veljajo two less relacije, potem tudi kasneje (Problem je lahko samo na desno. Na levo je ok, ker smo predpostavili, da je v redu izbira).
 
 - Ni treba poskusiti vseh možnih veljavnih stanj, ampak samo tista, ki so najmanjša (ne obstaja stanje, ki bi imelo vse tri vhode manjše) - zaradi tranzitivnosti.
@@ -13,9 +17,8 @@ Dokaz: če prej veljajo two less relacije, potem tudi kasneje (Problem je lahko 
 
 - Dve poti sta enaki, če obstaja permutacija, ki eno pot pretvori v drugo (uporabimo permutacijo na vsakem elementu). Tako lahko pri enem stanju v resnici poračunamo 6 stanj. Izkaže se, da to deluje samo slabše (dp_trans_perm): za n = 6 in n = 7 je cca 4krat počasneje
 
+- Implementacija s triem se ne izkaže, saj je prekrivanje premajhno glede na overhead od pointerjev. Pointerji so 8B, kar je veliko preveč (vsako vozlišče hrani zgolj 2 shorta). Kompresija večih členov pa prav tako ne dela nič bolje, saj je tako še manj prekrivanja (čeprav je overhead od pointerjev manjši).
 
 
-
-
-POTENCIALNO DOBRE REŠITVE - POTREBEN DOKAZ PRAVILNOSTI:
-- dve povečamo za 1, tretjo damo na minimalno možno
+UPPER BOUND:
+- Velikost clique na neusmerjenem grafu -> vsi elementi morajo biti med seboj primerljivi (ohlapnejši pogoj); vprašanje kako dobro je, ker je število vozlišč ogromno
